@@ -16,13 +16,13 @@ def message_hubot
   begin
     response = http.request(request)
   rescue Timeout::Error
-    error "Timed out"
+    error "Message Hubot Error: Timed out"
   rescue Errno::EHOSTUNREACH
-    error "Host unreachable"
+    error "Message Hubot Error: Host unreachable"
   rescue Errno::ECONNREFUSED
-    error "Connection refused"
+    error "Message Hubot Error: Connection refused"
   rescue Net::SSH::AuthenticationFailed
-    error "Authentication failure"
+    error "Message Hubot Error: Authentication failure"
   rescue => err
     error err
   end
@@ -30,13 +30,13 @@ def message_hubot
   when Net::HTTPSuccess then
     info "Successfully notified Hubot"
   when Net::HTTPBadGateway then
-    error "Bad Gateway, (is Hubot running?)"
+    error "Message Hubot Error: Bad Gateway, (is Hubot running?)"
   when Net::HTTPNotFound then
-    error "Not Found, (wrong URI?)"
+    error "Message Hubot Error: Not Found, (wrong URI?)"
   when Net::HTTPUnauthorized
-    error "Authentication failure"
+    error "Message Hubot Error: Authentication failure"
   else
-    error "Not able to message Hubot for some reason; continuing the deployment."
+    error "Message Hubot Error: Not able to message Hubot for some reason; continuing the deployment."
   end
   debug "Response is #{response.inspect}"
 end
