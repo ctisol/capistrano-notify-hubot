@@ -15,7 +15,7 @@ This is a Capistrano 3.x plugin, and relies on SSH access with passwordless sudo
 ##### capistrano-notify-hubot
 ### ------------------------------------------------------------------
 set :deployment_username,           ENV['USER']
-before  'deploy:started',           'notify_hubot:deploy:started'
+before  'deploy:starting',          'notify_hubot:deploy:starting'
 after   'deploy:updated',           'notify_hubot:deploy:updated'
 after   'deploy:finished',          'notify_hubot:deploy:finished'
 set :hubot_room,                    "hackery"

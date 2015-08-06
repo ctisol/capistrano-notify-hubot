@@ -2,7 +2,7 @@ namespace :notify_hubot do
   namespace :check do
 
     desc 'Ensure all notify_hubot specific settings are set, and warn and exit if not.'
-    before 'deploy:started', :settings do
+    before 'deploy:starting', :settings do
       {
         (File.dirname(__FILE__) + "/examples/config/deploy.rb") => 'config/deploy.rb'
       }.each do |abs, rel|

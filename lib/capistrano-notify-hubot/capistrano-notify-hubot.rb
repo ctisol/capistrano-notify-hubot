@@ -16,7 +16,7 @@ namespace :notify_hubot do
       end
     end
 
-    task :started => :set_log_level do
+    task :starting => :set_log_level do
       on roles(:notify_hubot) do |host|
         set :temp_id, Digest::SHA1.hexdigest(Time.now.to_f.to_s)[8..16]
         set :title,   "Begin Deploy"
@@ -25,7 +25,7 @@ namespace :notify_hubot do
         message_hubot
       end
     end
-    after :started, :unset_log_level
+    after :starting, :unset_log_level
 
     task :updated => :set_log_level do
       on roles(:notify_hubot) do |host|

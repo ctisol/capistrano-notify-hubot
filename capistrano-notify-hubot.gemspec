@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'capistrano-notify-hubot'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2015-08-06'
   s.summary     = "Notify Hubot during Capistrano Deployments"
   s.description = "Send Notifications to Hubot about Capistrano start, finish, etc."
