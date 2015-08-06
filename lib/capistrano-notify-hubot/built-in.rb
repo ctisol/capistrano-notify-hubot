@@ -14,7 +14,7 @@ def message_hubot
     "color"   => fetch(:color)
   })
   begin
-    http.request(request)
+    response = http.request(request)
   rescue Timeout::Error
     error "Timed out"
   rescue Errno::EHOSTUNREACH
@@ -23,11 +23,20 @@ def message_hubot
     error "Connection refused"
   rescue Net::SSH::AuthenticationFailed
     error "Authentication failure"
-  rescue Net::HTTPBadGateway
-    error "Bad Gateway, (is Hubot running?)"
   rescue => err
     error err
+  end
+  case response
+  when Net::HTTPSuccess then
+    info "Successfully notified Hubot"
+  when Net::HTTPBadGateway then
+    error "Bad Gateway, (is Hubot running?)"
+  when Net::HTTPNotFound then
+    error "Not Found, (wrong URI?)"
+  when Net::HTTPUnauthorized
+    error "Authentication failure"
   else
     error "Not able to message Hubot for some reason; continuing the deployment."
   end
+  debug "Response is #{response.inspect}"
 end
