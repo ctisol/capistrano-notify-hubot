@@ -23,7 +23,11 @@ def message_hubot
     error "Connection refused"
   rescue Net::SSH::AuthenticationFailed
     error "Authentication failure"
+  rescue Net::HTTPBadGateway
+    error "Bad Gateway, (is Hubot running?)"
   rescue => err
     error err
+  else
+    error "Not able to message Hubot for some reason; continuing the deployment."
   end
 end
