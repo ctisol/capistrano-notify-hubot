@@ -30,7 +30,7 @@ namespace :notify_hubot do
     task :updated => :set_log_level do
       on roles(:notify_hubot) do |host|
         set :title,   "Code Updated, finishing up"
-        set :message, "Application: `#{fetch(:application)}`\nHost: #{host}"
+        set :message, "Application: `#{fetch(:application)}`\nHost: #{host}\nBranch: #{fetch(:branch)}"
         set :color,   "9900CC"
         message_hubot
       end
@@ -40,7 +40,7 @@ namespace :notify_hubot do
     task :finished => :set_log_level do
       on roles(:notify_hubot) do |host|
         set :title,   "Successful Deploy"
-        set :message, "Application: `#{fetch(:application)}`\nHost: #{host}"
+        set :message, "Application: `#{fetch(:application)}`\nHost: #{host}\nBranch: #{fetch(:branch)}"
         set :color,   "good"
         message_hubot
       end
