@@ -38,3 +38,6 @@ module.exports = (robot) ->
 
 ###### Debugging:
 * You can add the `--trace` option at the end of a command to see when which tasks are invoked, and when which task is actually executed.
+
+###### TODO:
+* Fix some silent failures with reaching Hubot.
